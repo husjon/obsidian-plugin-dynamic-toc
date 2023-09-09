@@ -22,3 +22,15 @@
 .is-live-preview .dynamic-toc ol {
   white-space: normal;
 }
+
+.dynamic-toc ol {
+  counter-reset: tocCounter;
+}
+
+.dynamic-toc li {
+  counter-increment: tocCounter;
+}
+
+.dynamic-toc li::marker {
+  content: counters(tocCounter, ".") "  ";
+}
