@@ -17,5 +17,5 @@ export const TABLE_CLASS_NAME = "dynamic-toc";
 export const TABLE_CLASS_SELECTOR = `.${TABLE_CLASS_NAME}`;
 
 export const ALL_MATCHERS = Object.keys(
-  EXTERNAL_MARKDOWN_PREVIEW_STYLE
+  EXTERNAL_MARKDOWN_PREVIEW_STYLE,
 ) as ExternalMarkdownKey[];

@@ -15,7 +15,7 @@ export class CodeBlockRenderer extends MarkdownRenderChild {
     private app: App,
     private config: TableOptions,
     private filePath: string,
-    public container: HTMLElement
+    public container: HTMLElement,
   ) {
     super(container);
   }
@@ -25,17 +25,17 @@ export class CodeBlockRenderer extends MarkdownRenderChild {
       this.app.metadataCache.on(
         //@ts-ignore
         "dynamic-toc:settings",
-        this.onSettingsChangeHandler
-      )
+        this.onSettingsChangeHandler,
+      ),
     );
     this.registerEvent(
       this.app.workspace.on(
         "active-leaf-change",
-        this.onActiveLeafChangeHandler
-      )
+        this.onActiveLeafChangeHandler,
+      ),
     );
     this.registerEvent(
-      this.app.metadataCache.on("changed", this.onFileChangeHandler)
+      this.app.metadataCache.on("changed", this.onFileChangeHandler),
     );
   }
 
@@ -59,13 +59,13 @@ export class CodeBlockRenderer extends MarkdownRenderChild {
     this.container.classList.add(TABLE_CLASS_NAME);
     const headings = extractHeadings(
       this.app.metadataCache.getCache(this.filePath),
-      configOverride || this.config
+      configOverride || this.config,
     );
     await MarkdownRenderer.renderMarkdown(
       headings,
       this.container,
       this.filePath,
-      this
+      this,
     );
   }
 }

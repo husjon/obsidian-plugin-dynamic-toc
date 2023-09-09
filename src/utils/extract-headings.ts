@@ -4,12 +4,12 @@ import { TableOptions } from "../types";
 
 export function extractHeadings(
   fileMetaData: CachedMetadata,
-  options: TableOptions
+  options: TableOptions,
 ) {
   if (!fileMetaData?.headings) return "";
   const { headings } = fileMetaData;
   const processableHeadings = headings.filter(
-    (h) => !!h && h.level >= options.min_depth && h.level <= options.max_depth
+    (h) => !!h && h.level >= options.min_depth && h.level <= options.max_depth,
   );
   if (!processableHeadings.length) return "";
 
@@ -24,7 +24,7 @@ export function extractHeadings(
 function getIndicator(
   heading: Heading,
   firstLevel: number,
-  options: TableOptions
+  options: TableOptions,
 ) {
   const defaultIndicator = (options.style === "number" && "1.") || "-";
   if (!options.varied_style) return defaultIndicator;
@@ -78,7 +78,7 @@ function buildInlineMarkdownText(headings: Heading[], options: TableOptions) {
     .reduce((a, b) => Math.min(a, b));
   // all headings at the same level as the highest depth
   const topLevelHeadings = headings.filter(
-    (heading) => heading.level === highestDepth
+    (heading) => heading.level === highestDepth,
   );
   const delimiter = options.delimiter ? options.delimiter : "|";
   return topLevelHeadings

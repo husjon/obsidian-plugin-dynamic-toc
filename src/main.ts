@@ -32,9 +32,9 @@ export default class DynamicTOCPlugin extends Plugin {
       (source: string, el: HTMLElement, ctx: MarkdownPostProcessorContext) => {
         const options = parseConfig(source, this.settings);
         ctx.addChild(
-          new CodeBlockRenderer(this.app, options, ctx.sourcePath, el)
+          new CodeBlockRenderer(this.app, options, ctx.sourcePath, el),
         );
-      }
+      },
     );
 
     this.registerMarkdownPostProcessor(
@@ -47,7 +47,7 @@ export default class DynamicTOCPlugin extends Plugin {
           if (!matcher || matcher === "None") continue;
           const match = DynamicInjectionRenderer.findMatch(
             el,
-            EXTERNAL_MARKDOWN_PREVIEW_STYLE[matcher as ExternalMarkdownKey]
+            EXTERNAL_MARKDOWN_PREVIEW_STYLE[matcher as ExternalMarkdownKey],
           );
           if (!match?.parentNode) continue;
           ctx.addChild(
@@ -56,11 +56,11 @@ export default class DynamicTOCPlugin extends Plugin {
               this.settings,
               ctx.sourcePath,
               el,
-              match
-            )
+              match,
+            ),
           );
         }
-      }
+      },
     );
   };
 
