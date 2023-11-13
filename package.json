@@ -11,6 +11,7 @@
     "build": "obsidian-plugin build -S src/styles.css src/main.ts -o .",
     "release:dry": "standard-version -t '' --dry-run",
     "release": "standard-version -t '' -a",
+    "version": "node version-bump.mjs && git add manifest.json versions.json",
     "test": "jest",
     "test:watch": "jest --watch"
   },
