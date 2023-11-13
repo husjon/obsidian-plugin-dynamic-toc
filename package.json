@@ -9,8 +9,8 @@
     "prebuild": "yarn test",
     "type-check": "tsc --noEmit",
     "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
-    "release:dry": "standard-version -t '' --dry-run",
-    "release": "standard-version -t '' -a",
+    "_need_replacements__release:dry": "standard-version -t '' --dry-run",
+    "_need_replacements__release": "standard-version -t '' -a",
     "version": "node version-bump.mjs && git add manifest.json versions.json",
     "test": "jest",
     "test:watch": "jest --watch"
@@ -21,7 +21,6 @@
     "esbuild": "^0.19.5",
     "jest": "^27.4.5",
     "obsidian": "obsidianmd/obsidian-api",
-    "standard-version": "^9.3.1",
     "ts-jest": "^27.1.2",
     "typescript": "^4.5.4"
   }
