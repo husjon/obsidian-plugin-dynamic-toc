@@ -5,10 +5,10 @@
   "main": "main.js",
   "license": "MIT",
   "scripts": {
-    "dev": "obsidian-plugin dev -S src/styles.css src/main.ts",
+    "dev": "node esbuild.config.mjs",
     "prebuild": "yarn test",
     "type-check": "tsc --noEmit",
-    "build": "obsidian-plugin build -S src/styles.css src/main.ts -o .",
+    "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
     "release:dry": "standard-version -t '' --dry-run",
     "release": "standard-version -t '' -a",
     "version": "node version-bump.mjs && git add manifest.json versions.json",
@@ -17,9 +17,10 @@
   },
   "devDependencies": {
     "@types/jest": "^27.0.3",
+    "builtin-modules": "^3.3.0",
+    "esbuild": "^0.19.5",
     "jest": "^27.4.5",
     "obsidian": "obsidianmd/obsidian-api",
-    "obsidian-plugin-cli": "^0.8.0",
     "standard-version": "^9.3.1",
     "ts-jest": "^27.1.2",
     "typescript": "^4.5.4"
