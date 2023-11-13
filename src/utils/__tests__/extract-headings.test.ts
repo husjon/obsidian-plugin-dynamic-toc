@@ -133,7 +133,7 @@ describe("Extract headings", () => {
       } as TableOptions;
       const result = extractHeadings(defaultHeadings, options);
       expect(result).toEqual(
-        "[[#foo]] | [[#baz]] | [[#Something Alt Text|Alt Text]]"
+        "[[#foo]] | [[#baz]] | [[#Something Alt Text|Alt Text]]",
       );
     });
     it("should accept a different delimiter", () => {
@@ -145,7 +145,7 @@ describe("Extract headings", () => {
       } as TableOptions;
       const result = extractHeadings(defaultHeadings, options);
       expect(result).toEqual(
-        "[[#foo]] * [[#baz]] * [[#Something Alt Text|Alt Text]]"
+        "[[#foo]] * [[#baz]] * [[#Something Alt Text|Alt Text]]",
       );
     });
     it("should trim user delimiter", () => {
@@ -157,7 +157,7 @@ describe("Extract headings", () => {
       } as TableOptions;
       const result = extractHeadings(defaultHeadings, options);
       expect(result).toEqual(
-        "[[#foo]] * [[#baz]] * [[#Something Alt Text|Alt Text]]"
+        "[[#foo]] * [[#baz]] * [[#Something Alt Text|Alt Text]]",
       );
     });
   });

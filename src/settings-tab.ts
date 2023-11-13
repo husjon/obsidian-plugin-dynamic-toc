@@ -7,12 +7,15 @@ import {
 import DynamicTOCPlugin from "./main";
 
 export class DynamicTOCSettingsTab extends PluginSettingTab {
-  constructor(app: App, private plugin: DynamicTOCPlugin) {
+  constructor(
+    app: App,
+    private plugin: DynamicTOCPlugin,
+  ) {
     super(app, plugin);
   }
 
   display(): void {
-    let { containerEl } = this;
+    const { containerEl } = this;
 
     containerEl.empty();
     containerEl.createEl("h2", { text: "Dynamic Table of Contents Settings" });
@@ -26,24 +29,24 @@ export class DynamicTOCSettingsTab extends PluginSettingTab {
           .onChange(async (val) => {
             this.plugin.settings.style = val as BulletStyle;
             await this.plugin.saveSettings();
-          })
+          }),
       );
     new Setting(containerEl)
       .setName("Enable varied style")
       .setDesc(
-        "Varied style allows for the most top level heading to match your list style, then subsequent levels to be the opposite. For example if your list style is number, then your level 2 headings will be number, any levels lower then 2 will be bullet and vice versa."
+        "Varied style allows for the most top level heading to match your list style, then subsequent levels to be the opposite. For example if your list style is number, then your level 2 headings will be number, any levels lower then 2 will be bullet and vice versa.",
       )
       .addToggle((cb) =>
         cb.setValue(this.plugin.settings.varied_style).onChange(async (val) => {
           this.plugin.settings.varied_style = val;
           await this.plugin.saveSettings();
-        })
+        }),
       );
 
     new Setting(containerEl)
       .setName("Delimiter")
       .setDesc(
-        "Only used when list style is inline. The delimiter between the list items"
+        "Only used when list style is inline. The delimiter between the list items",
       )
       .addText((text) =>
         text
@@ -52,7 +55,7 @@ export class DynamicTOCSettingsTab extends PluginSettingTab {
           .onChange(async (val) => {
             this.plugin.settings.delimiter = val;
             this.plugin.saveSettings();
-          })
+          }),
       );
 
     new Setting(containerEl)
@@ -70,7 +73,7 @@ export class DynamicTOCSettingsTab extends PluginSettingTab {
               this.plugin.settings.min_depth = val;
               await this.plugin.saveSettings();
             }
-          })
+          }),
       );
     new Setting(containerEl)
       .setName("Maximum Header Depth")
@@ -87,12 +90,12 @@ export class DynamicTOCSettingsTab extends PluginSettingTab {
               this.plugin.settings.max_depth = val;
               await this.plugin.saveSettings();
             }
-          })
+          }),
       );
     new Setting(containerEl)
       .setName("Title")
       .setDesc(
-        "The title of the table of contents, supports simple markdown such as ## Contents or **Contents**"
+        "The title of the table of contents, supports simple markdown such as ## Contents or **Contents**",
       )
       .addText((text) =>
         text
@@ -101,12 +104,12 @@ export class DynamicTOCSettingsTab extends PluginSettingTab {
           .onChange(async (val) => {
             this.plugin.settings.title = val;
             this.plugin.saveSettings();
-          })
+          }),
       );
     const externalRendererSetting = new Setting(containerEl)
       .setName("External rendering support")
       .setDesc(
-        "Different markdown viewers provided Table of Contents support such as [TOC] or [[_TOC_]]. You may need to restart Obsidian for this to take effect."
+        "Different markdown viewers provided Table of Contents support such as [TOC] or [[_TOC_]]. You may need to restart Obsidian for this to take effect.",
       )
       .addDropdown((cb) =>
         cb
@@ -116,15 +119,15 @@ export class DynamicTOCSettingsTab extends PluginSettingTab {
                 const value = EXTERNAL_MARKDOWN_PREVIEW_STYLE[curr];
                 return { ...acc, [curr]: value };
               },
-              {} as Record<string, string>
-            )
+              {} as Record<string, string>,
+            ),
           )
           .setDisabled(this.plugin.settings.supportAllMatchers)
           .setValue(this.plugin.settings.externalStyle)
           .onChange(async (val: ExternalMarkdownKey) => {
             this.plugin.settings.externalStyle = val;
             await this.plugin.saveSettings();
-          })
+          }),
       );
 
     new Setting(containerEl)
@@ -137,12 +140,12 @@ export class DynamicTOCSettingsTab extends PluginSettingTab {
             this.plugin.settings.supportAllMatchers = val;
             externalRendererSetting.setDisabled(val);
             await this.plugin.saveSettings();
-          })
+          }),
       );
     new Setting(containerEl)
       .setName("Allow inconsistent heading levels")
       .setDesc(
-        "NOT RECOMMENDED (may be removed in future): If enabled, the table of contents will be generated even if the header depth is inconsistent. This may cause the table of contents to be rendered incorrectly."
+        "NOT RECOMMENDED (may be removed in future): If enabled, the table of contents will be generated even if the header depth is inconsistent. This may cause the table of contents to be rendered incorrectly.",
       )
       .addToggle((cb) =>
         cb
@@ -150,7 +153,7 @@ export class DynamicTOCSettingsTab extends PluginSettingTab {
           .onChange(async (val) => {
             this.plugin.settings.allow_inconsistent_headings = val;
             await this.plugin.saveSettings();
-          })
+          }),
       );
   }
 }

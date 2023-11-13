@@ -9,7 +9,7 @@ export class DynamicInjectionRenderer extends MarkdownRenderChild {
     private settings: DynamicTOCSettings,
     private filePath: string,
     container: HTMLElement,
-    private match: HTMLElement
+    private match: HTMLElement,
   ) {
     super(container);
   }
@@ -26,11 +26,11 @@ export class DynamicInjectionRenderer extends MarkdownRenderChild {
       this.app.metadataCache.on(
         //@ts-ignore
         "dynamic-toc:settings",
-        this.onSettingsChangeHandler
-      )
+        this.onSettingsChangeHandler,
+      ),
     );
     this.registerEvent(
-      this.app.metadataCache.on("changed", this.onFileChangeHandler)
+      this.app.metadataCache.on("changed", this.onFileChangeHandler),
     );
   }
 
@@ -45,7 +45,7 @@ export class DynamicInjectionRenderer extends MarkdownRenderChild {
   async render() {
     const headings = extractHeadings(
       this.app.metadataCache.getCache(this.filePath),
-      this.settings
+      this.settings,
     );
     const newElement = document.createElement("div");
     newElement.classList.add(TABLE_CLASS_NAME);
@@ -53,7 +53,7 @@ export class DynamicInjectionRenderer extends MarkdownRenderChild {
       headings,
       newElement,
       this.filePath,
-      this
+      this,
     );
     // Keep the match in the document as a hook but hide it
     this.match.style.display = "none";

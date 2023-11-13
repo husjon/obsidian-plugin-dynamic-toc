@@ -8,7 +8,7 @@ import { DynamicTOCSettings, TableOptions } from "../types";
  */
 export function mergeSettings(
   options: TableOptions,
-  settings: DynamicTOCSettings
+  settings: DynamicTOCSettings,
 ): TableOptions {
   const merged = Object.assign({}, settings, options);
   return Object.keys(merged).reduce((acc, curr: keyof TableOptions) => {
@@ -28,7 +28,7 @@ export function mergeSettings(
  */
 export function parseConfig(
   source: string,
-  settings: DynamicTOCSettings
+  settings: DynamicTOCSettings,
 ): TableOptions {
   try {
     const options = parseYaml(source) as TableOptions;
